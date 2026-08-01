@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ottimate.com/releases
+versioning:
+  scheme: uri-path + header
+  current: v1
+  api_version: 1.0.0
+  header: X-API-Version
+  supported: [1.0.0, 1.1.0]
+  docs: https://docs.ottimate.com/releases
+maturity_tags:
+  description: >-
+    Every endpoint in the API Reference carries a status tag: Stable, Generally
+    Available, Beta, Pre-release, In Development, or Deprecated.
+  sla_note: Stable endpoints are covered by SLA and backward-compatibility guarantees; Beta and below are not yet covered by SLA.
+deprecation:
+  policy_url: https://docs.ottimate.com/releases
+  description: >-
+    Deprecated endpoints still function but should be migrated away from; the
+    sunset timeline is published in the changelog. No breaking changes to GA
+    endpoints without a versioned migration path.
+  changelog: https://docs.ottimate.com/v-1/changelog
+status_page: https://status.ottimate.com
+status_page_provider: incident.io
+status_components:
+- Dashboard
+- Invoice Ingestion
+- Payments
+- Spend Management
+- Reports
+deprecated_operations: []
+notes: >-
+  No operations in openapi/qubiqle-openapi-original.json carry deprecated: true
+  as of this pass. Purchase Orders and Receipts APIs moved from In Development to
+  Beta on 2026-03-05.

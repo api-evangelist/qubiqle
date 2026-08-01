@@ -1,0 +1,30 @@
+{
+  "provider": "qubiqle",
+  "sources": [
+    "qubiqle-accounts-api-openapi.yml",
+    "qubiqle-batch-api-openapi.yml",
+    "qubiqle-catalog-api-openapi.yml",
+    "qubiqle-dimensions-api-openapi.yml",
+    "qubiqle-invoices-api-openapi.yml",
+    "qubiqle-oauth-api-openapi.yml",
+    "qubiqle-purchaseorders-api-openapi.yml",
+    "qubiqle-receipts-api-openapi.yml",
+    "qubiqle-vendors-api-openapi.yml"
+  ],
+  "outputs": [
+    "qubiqle-accounts-api-openapi.yml",
+    "qubiqle-batch-api-openapi.yml",
+    "qubiqle-catalog-api-openapi.yml",
+    "qubiqle-dimensions-api-openapi.yml",
+    "qubiqle-invoices-api-openapi.yml",
+    "qubiqle-oauth-api-openapi.yml",
+    "qubiqle-purchaseorders-api-openapi.yml",
+    "qubiqle-receipts-api-openapi.yml",
+    "qubiqle-vendors-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

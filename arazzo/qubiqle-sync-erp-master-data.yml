@@ -1,0 +1,51 @@
+arazzo: 1.0.1
+info:
+  title: Sync ERP master data into Ottimate
+  version: 1.0.0
+  summary: Authenticate, then upsert accounting dimensions and vendors so invoices can be auto-coded and matched.
+sourceDescriptions:
+- name: ottimate
+  url: ../openapi/qubiqle-openapi-original.json
+  type: openapi
+workflows:
+- workflowId: syncErpMasterData
+  summary: Get a token, bulk-upsert dimensions, then bulk-upsert vendors.
+  inputs:
+    type: object
+    properties:
+      apiKey: { type: string }
+      clientId: { type: string }
+      clientSecret: { type: string }
+      dimensions: { type: array }
+      vendors: { type: array }
+  steps:
+  - stepId: authenticate
+    operationId: post-oauth-token
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        grant_type: client_credentials
+        client_id: $inputs.clientId
+        client_secret: $inputs.clientSecret
+        scope: accounts.can_access_dashboard
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: upsertDimensions
+    operationId: post-dimensions-bulk
+    requestBody:
+      contentType: application/json
+      payload:
+        dimensions: $inputs.dimensions
+    outputs:
+      dimensionResult: $response.body
+  - stepId: upsertVendors
+    operationId: post-vendors-bulk
+    requestBody:
+      contentType: application/json
+      payload:
+        vendors: $inputs.vendors
+    outputs:
+      vendorResult: $response.body
+  outputs:
+    dimensions: $steps.upsertDimensions.outputs.dimensionResult
+    vendors: $steps.upsertVendors.outputs.vendorResult

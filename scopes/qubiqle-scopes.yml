@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/qubiqle-openapi-original.json
+docs: https://docs.ottimate.com/auth
+schemes:
+- name: OAuth2
+  flow: clientCredentials
+  token_urls:
+    sandbox: https://sandbox-auth.ottimate.com/oauth/token
+    production: https://auth.ottimate.com/oauth/token
+scopes:
+- scope: accounts.can_access_dashboard
+  description: >-
+    The only scope currently supported. Requested at token exchange
+    (scope=accounts.can_access_dashboard) and echoed back on the token response.
+  flows: [clientCredentials]
+notes: >-
+  Ottimate documents a single OAuth scope today. The OpenAPI securityScheme is
+  declared as http/bearer rather than a typed oauth2 flow, so this scope list is
+  captured from the documented client_credentials exchange at
+  https://docs.ottimate.com/auth, not derived from the spec.

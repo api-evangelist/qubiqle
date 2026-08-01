@@ -1,0 +1,62 @@
+arazzo: 1.0.1
+info:
+  title: Invoice capture to export
+  version: 1.0.0
+  summary: Upload an invoice document, retrieve the created invoice, code it, then mark it exported.
+sourceDescriptions:
+- name: ottimate
+  url: ../openapi/qubiqle-openapi-original.json
+  type: openapi
+workflows:
+- workflowId: invoiceCaptureToExport
+  summary: Authenticate, upload an invoice, fetch it, patch coding, and mark it exported.
+  inputs:
+    type: object
+    properties:
+      apiKey: { type: string }
+      clientId: { type: string }
+      clientSecret: { type: string }
+      invoiceId: { type: string }
+  steps:
+  - stepId: authenticate
+    operationId: post-oauth-token
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        grant_type: client_credentials
+        client_id: $inputs.clientId
+        client_secret: $inputs.clientSecret
+        scope: accounts.can_access_dashboard
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: uploadInvoice
+    operationId: post-invoices-upload
+    outputs:
+      upload: $response.body
+  - stepId: getInvoice
+    operationId: get-invoices-id
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.invoiceId
+    outputs:
+      invoice: $response.body
+  - stepId: codeInvoice
+    operationId: patch-invoices-id
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.invoiceId
+    outputs:
+      updated: $response.body
+  - stepId: markExported
+    operationId: post-invoices-mark-exported
+    requestBody:
+      contentType: application/json
+      payload:
+        invoices:
+        - $inputs.invoiceId
+    outputs:
+      result: $response.body
+  outputs:
+    exportResult: $steps.markExported.outputs.result

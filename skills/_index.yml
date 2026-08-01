@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/qubiqle-openapi-original.json
+skills:
+- file: qubiqle-sync-vendors-and-dimensions.md
+  name: Sync vendors and dimensions to Ottimate
+  api: openapi/qubiqle-openapi-original.json
+  operations: [post-oauth-token, get-vendors-root, post-vendors-root, post-vendors-bulk, get-dimensions-root, post-dimensions-root, post-dimensions-bulk]
+- file: qubiqle-upload-and-process-invoice.md
+  name: Upload and process an invoice
+  api: openapi/qubiqle-openapi-original.json
+  operations: [post-oauth-token, post-invoices-upload, get-invoices-uploads, get-invoices-root, get-invoices-id, patch-invoices-id, get-invoices-id-approvers, post-invoices-mark-exported]

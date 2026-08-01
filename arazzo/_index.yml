@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qubiqle-openapi-original.json
+workflows:
+- file: qubiqle-sync-erp-master-data.yml
+  workflowId: syncErpMasterData
+  title: Sync ERP master data into Ottimate
+  summary: Authenticate, then bulk-upsert accounting dimensions and vendors.
+- file: qubiqle-invoice-capture-to-export.yml
+  workflowId: invoiceCaptureToExport
+  title: Invoice capture to export
+  summary: Upload an invoice document, fetch it, code it, and mark it exported.

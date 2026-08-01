@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ottimate (Qubiqle) API
+  version: 1.0.0
+extends: openapi/qubiqle-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 4
+    x-api-evangelist-provider: qubiqle
+    x-former-names:
+    - Qubiqle
+    - Plate IQ
+    description: >-
+      Ottimate (formerly Plate IQ; qubiqle.com redirects here) accounts payable
+      automation API — invoice capture (InstantCapture), GL coding & matching
+      (Core AP), payments (VendorPay), vendors, dimensions, purchase orders,
+      receipts, and catalog — REST/JSON over HTTPS. Requires both an X-Api-Key
+      header and an OAuth2 client_credentials bearer token.
+- target: $.servers
+  update:
+    x-environments:
+      sandbox: https://sandbox-api.ottimate.com/v1
+      production: https://api.ottimate.com/v1
+- target: $.info
+  update:
+    x-idempotency:
+      header: Idempotency-Key
+      applies_to: POST /v1/*
+      retention_hours: 24
+      docs: https://docs.ottimate.com/idempotency
+    x-rate-limits:
+      steady_per_second: 1000
+      burst: 2000
+      daily_quota: 10000
+      docs: https://docs.ottimate.com/api-limits
+    x-mcp-server: https://docs.ottimate.com/_mcp/server

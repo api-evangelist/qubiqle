@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qubiqle-openapi-original.json
+format: custom-envelope
+envelope:
+  description: >-
+    Errors are returned as a JSON object (not RFC 9457 problem+json). Fields:
+    code (human-readable error message string), message (additional detail —
+    object, string, or null), request_id (unique request identifier for support),
+    timestamp (when the error occurred). code and message are required.
+  fields:
+  - code
+  - message
+  - request_id
+  - timestamp
+  schema: ErrorResponse
+problems:
+- status: 400
+  title: Bad request
+  detail: Invalid parameters or request format. Also returned for a malformed Idempotency-Key header (length/charset).
+- status: 401
+  title: Unauthorized
+  detail: Authentication required or invalid credentials. Refresh the OAuth access token and retry.
+- status: 403
+  title: Forbidden
+  detail: Access denied or insufficient permissions.
+- status: 404
+  title: Not found
+  detail: Resource does not exist.
+- status: 409
+  title: Conflict
+  detail: A concurrent request with the same Idempotency-Key is still being processed. Wait for the original to complete and retry.
+- status: 412
+  title: Precondition failed
+  detail: Concurrent modification detected.
+- status: 413
+  title: Payload too large
+  detail: File exceeds the maximum size limit of 25MB.
+- status: 422
+  title: Unprocessable entity
+  detail: Request validation failed, or an Idempotency-Key was reused with a different request body (JSON requests only).
+- status: 500
+  title: Internal server error
+  detail: Server-side processing error.
+- status: 208
+  title: Already reported
+  detail: Idempotent replay whose original response was too large to cache (>64KB) or was streamed. The original operation succeeded — fetch current state via the corresponding GET.
+notes: >-
+  Statuses derived from OpenAPI 4xx/5xx responses; 208/409/422 idempotency
+  semantics captured from https://docs.ottimate.com/idempotency. Not a payments
+  card acquirer, so no decline-code catalog applies.

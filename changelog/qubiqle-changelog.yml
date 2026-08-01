@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ottimate.com/v-1/changelog
+scheme: semver + dated entries
+current_version: 1.0.0
+entries:
+- date: '2026-03-05'
+  url: https://docs.ottimate.com/changelog/2026/3/5
+  breaking: false
+  highlights:
+  - Purchase Orders and Receipts APIs promoted from In Development to Beta (two-way / three-way matching).
+  - Dimensions support added on purchase-order line items (keyed by type, inherited onto matched invoice lines).
+  - Custom fields (custom_fields object) added to purchase orders.
+  - Flexible PO lookup for receipts.
+- date: '2026-02-27'
+  url: https://docs.ottimate.com/changelog/2026/2/27
+  breaking: false
+  highlights:
+  - Introduced Purchase Orders, Receipts, and Batch processing endpoints (In Development).
+  - Added bulk operations across several existing APIs.
+  - Established availability status tags across the API Reference (Stable/GA/Beta/Pre-release/In Development/Deprecated).
+- date: '2025-11-24'
+  url: https://docs.ottimate.com/changelog/2025/11/24
+  version: 1.0.0
+  breaking: false
+  highlights:
+  - 'Release v1.0.0: initial public API.'
+  - Accounting Vendors management endpoints (get/create/bulk).
+  - Dimension management endpoints.

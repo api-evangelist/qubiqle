@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ottimate.com/sandbox
+environments:
+  sandbox:
+    dashboard: https://sandbox.ottimate.com
+    api_base: https://sandbox-api.ottimate.com/v1
+    auth_server: https://sandbox-auth.ottimate.com/oauth/token
+  production:
+    dashboard: https://dashboard.ottimate.com
+    api_base: https://api.ottimate.com/v1
+    auth_server: https://auth.ottimate.com/oauth/token
+separation:
+  description: >-
+    Sandbox is a complete, isolated replica of production. Independent data and
+    settings, different Ottimate-generated IDs per environment, separate API
+    keys / Client IDs / Client Secrets, and isolated users. Feature parity across
+    all endpoints, auth flows, invoice processing/extraction, approvals, vendor
+    and dimension management, and catalog.
+provisioning:
+  self_service: false
+  description: >-
+    Two-stage, Partner-Manager-provisioned. Stage 1 (Sandbox): a mock client
+    account is created and configured with required features, then Sandbox API
+    Key + Client ID/Secret and a dedicated Slack channel are issued. The API will
+    not work until the client account is configured. Stage 2 (Production):
+    credentials are issued only after successful validation in Sandbox.
+test_values:
+  published: false
+  note: >-
+    Ottimate does not publish fixed magic test identifiers or test card numbers;
+    the sandbox is a configured mock organization rather than a set of documented
+    fixtures. All development and testing MUST be done in Sandbox before
+    production credentials are granted.

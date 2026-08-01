@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.ottimate.com/llms.txt
+server:
+  name: ottimate-docs
+  transport: http
+  url: https://docs.ottimate.com/_mcp/server
+  description: >-
+    Official hosted MCP server published by Ottimate for AI client integration
+    (Claude Code, Cursor, etc.). Advertised in llms.txt and on every docs page.
+    Exposes documentation search over docs.ottimate.com. This is a
+    documentation-assistant MCP, not a full API-operations server.
+tools:
+- name: searchDocs
+  description: Search the documentation at https://docs.ottimate.com. Returns relevant doc passages with source URLs.
+  read_only: true
+notes: >-
+  Verified live 2026-07-20 via tools/list. The Ottimate REST API itself
+  (openapi/qubiqle-openapi-original.json) has no first-party API-operations MCP
+  server yet; the 53 operations could be surfaced as a candidate tool set — see
+  agentic-access/qubiqle-agentic-access.yml for the per-operation classification.

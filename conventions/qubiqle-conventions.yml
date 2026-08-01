@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ottimate.com/overview
+authentication:
+  style: oauth2-client-credentials + api-key
+  headers:
+  - Authorization: Bearer <access_token>
+  - X-Api-Key: <api_key>
+  ref: authentication/qubiqle-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  applies_to: All POST requests under /v1/*
+  key_format: 1-128 chars, [A-Za-z0-9._\-+=/], UUIDv4 or ULID recommended
+  retention: 24 hours from first response
+  scope: per API key + HTTP method + path + idempotency key
+  body_match: SHA-256 hash of JSON body; mismatched body with same key returns 422
+  replay_signal: 'X-Idempotent-Replayed: true (2xx replay)'
+  large_response: 208 Already Reported when original >64KB or streamed
+  concurrent: 409 Conflict while original still processing
+  cached: only 2xx responses; 4xx/5xx retried fresh
+  docs: https://docs.ottimate.com/idempotency
+  ref: errors/qubiqle-problem-types.yml
+pagination:
+  style: page-number offset
+  params:
+  - page (default 1)
+  - limit (default 20)
+  response_fields:
+  - count
+  - page
+  - limit
+  - version
+versioning:
+  scheme: uri-path (/v1) + optional X-API-Version header
+  header: X-API-Version
+  supported_versions:
+  - 1.0.0
+  - 1.1.0
+  default: latest
+  ref: lifecycle/qubiqle-lifecycle.yml
+request_tracing:
+  field: request_id
+  where: returned in the error envelope for support correlation
+async_processing:
+  description: >-
+    Long-running / bulk operations return immediately with a batch ID; poll
+    GET /batch/{id}/progress and GET /batch/{id}/results. Individual requests
+    time out at 29 seconds.
+error_envelope:
+  format: custom-envelope (code/message/request_id/timestamp) — not RFC 9457
+  ref: errors/qubiqle-problem-types.yml
+rate_limit_signaling:
+  ref: rate-limits/qubiqle-rate-limits.yml
+  summary: 1,000 req/s steady, 2,000 burst, 10,000/day per API key

@@ -1,0 +1,92 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qubiqle-openapi-original.json
+entities:
+- name: account
+  path: /accounts
+  description: Top-level tenant for the authenticated user; parent of companies and locations.
+- name: company
+  path: /accounts/{id}/companies
+  description: A company under an account.
+- name: location
+  path: /accounts/{id}/locations
+  description: A physical/operating location under an account.
+- name: vendor
+  path: /vendors
+  description: Accounting vendor; filterable by ottimate_company_id.
+- name: dimension
+  path: /dimensions
+  description: Accounting dimension (cost center, department, class, project, custom) keyed by ottimate_type.
+- name: purchase_order
+  path: /purchase-orders
+  description: Purchase order with line items carrying dimensions and custom_fields; supports two/three-way matching.
+- name: receipt
+  path: /receipts
+  description: Goods-received receipt supporting three-way matching against POs.
+- name: invoice
+  path: /invoices
+  description: Invoice with header, line items, GL splits, dimensions, images, approvers, and history.
+- name: catalog_entry
+  path: /catalog/entries
+  description: Catalog item with prices and allowances.
+- name: catalog_allowance
+  path: /catalog/allowances
+- name: catalog_price
+  path: /catalog/prices
+- name: catalog_variance
+  path: /catalog/variances
+- name: batch
+  path: /batch
+  description: Async job handle for bulk operations; poll progress and results.
+relationships:
+- from: company
+  to: account
+  type: belongs_to
+  via: account_id (path /accounts/{id}/companies)
+- from: location
+  to: account
+  type: belongs_to
+  via: account_id (path /accounts/{id}/locations)
+- from: vendor
+  to: company
+  type: belongs_to
+  via: ottimate_company_id
+- from: invoice
+  to: vendor
+  type: belongs_to
+  via: vendor
+- from: invoice
+  to: dimension
+  type: has_many
+  via: dimensions / gl_splits.dimensions
+- from: purchase_order
+  to: dimension
+  type: has_many
+  via: items[].dimensions
+- from: receipt
+  to: purchase_order
+  type: belongs_to
+  via: purchase_order lookup (flexible PO lookup)
+- from: invoice
+  to: purchase_order
+  type: belongs_to
+  via: PO matching (two/three-way)
+- from: catalog_entry
+  to: catalog_price
+  type: has_many
+  via: prices[]
+- from: catalog_entry
+  to: catalog_allowance
+  type: has_many
+  via: allowances[]
+- from: catalog_variance
+  to: catalog_entry
+  type: belongs_to
+  via: catalog entry / invoice-items
+- from: batch
+  to: invoice
+  type: has_many
+  via: bulk import/upsert results
+notes: >-
+  Bulk async endpoints (post-*-bulk, invoices/import) return a batch id resolved
+  via get-batch-id-progress / get-batch-id-results.

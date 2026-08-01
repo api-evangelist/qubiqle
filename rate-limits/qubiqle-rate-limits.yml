@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ottimate.com/api-limits
+scope: per-api-key
+rate_limits:
+- name: steady-state
+  limit_count: 1000
+  window: second
+  algorithm: token-bucket
+  description: Sustained request rate; tokens refill at 1,000/second and are consumed per request.
+- name: burst
+  limit_count: 2000
+  window: instant
+  description: Maximum simultaneous requests before the steady-state rate applies. For short spikes (initial bulk loads), not sustained throughput.
+- name: daily-quota
+  limit_count: 10000
+  window: day
+  reset: midnight-utc
+  description: Per-API-key daily request quota. Contact your Ottimate Partner Manager for a higher quota.
+request_timeout_seconds: 29
+notes: >-
+  Requests time out after 29 seconds; long-running operations (bulk uploads)
+  return immediately with a batch ID to poll. Limits are enforced per API Key.

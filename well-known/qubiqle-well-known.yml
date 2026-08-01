@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+host: https://ottimate.com
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+notes: >-
+  Probed 2026-07-20. Ottimate publishes no /.well-known/ discovery surface on
+  the marketing host. OAuth token endpoints are documented in the API docs
+  (sandbox-auth.ottimate.com / auth.ottimate.com) rather than via a
+  standardized oauth-authorization-server document. No security.txt is present.

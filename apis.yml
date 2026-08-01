@@ -1,20 +1,144 @@
 aid: qubiqle
 name: Qubiqle
-description: Qubiqle is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Qubiqle is an early 500 Startups (500 Global) portfolio company that became
+  Plate IQ and today operates as Ottimate (qubiqle.com redirects to ottimate.com).
+  Ottimate is an AI-powered accounts payable (AP) automation platform for invoice
+  capture, GL coding and matching, approval workflows, and vendor payments,
+  processing 40M+ invoices and $30B+ in payables annually across 30,000+ US
+  locations. It exposes a REST/JSON V1 API (api.ottimate.com/v1, sandbox at
+  sandbox-api.ottimate.com/v1) covering accounts, vendors, dimensions, purchase
+  orders, receipts, invoices, catalog, and async batch processing — secured with
+  an X-Api-Key header plus an OAuth2 client_credentials bearer token, with
+  documented idempotency, pagination, rate limits, and a hosted docs MCP server.
 url: https://raw.githubusercontent.com/api-evangelist/qubiqle/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: active-api-provider (Ottimate, formerly Plate IQ / Qubiqle)
+x-former-names:
+- Plate IQ
+- Qubiqle
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://ottimate.com/wp-content/uploads/2025/09/ottimate-cover-image.png
 tags:
 - Company
-apis: []
+- Accounts Payable
+- Invoicing
+- Payments
+- Accounting
+- FinTech
+- Automation
+- Artificial Intelligence
+- ERP Integration
+- Procurement
+apis:
+- aid: qubiqle:qubiqle-accounts-api
+  name: Qubiqle accounts API
+  description: The accounts API from Qubiqle — 3 operation(s) for accounts.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-accounts-api-openapi.yml
+- aid: qubiqle:qubiqle-batch-api
+  name: Qubiqle batch API
+  description: The batch API from Qubiqle — 3 operation(s) for batch.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - batch
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-batch-api-openapi.yml
+- aid: qubiqle:qubiqle-catalog-api
+  name: Qubiqle catalog API
+  description: The catalog API from Qubiqle — 12 operation(s) for catalog.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-catalog-api-openapi.yml
+- aid: qubiqle:qubiqle-dimensions-api
+  name: Qubiqle dimensions API
+  description: The dimensions API from Qubiqle — 3 operation(s) for dimensions.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - dimensions
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-dimensions-api-openapi.yml
+- aid: qubiqle:qubiqle-invoices-api
+  name: Qubiqle invoices API
+  description: The invoices API from Qubiqle — 11 operation(s) for invoices.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-invoices-api-openapi.yml
+- aid: qubiqle:qubiqle-oauth-api
+  name: Qubiqle oauth API
+  description: The oauth API from Qubiqle — 1 operation(s) for oauth.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-oauth-api-openapi.yml
+- aid: qubiqle:qubiqle-purchaseorders-api
+  name: Qubiqle purchaseOrders API
+  description: The purchaseOrders API from Qubiqle — 3 operation(s) for purchaseorders.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - purchaseOrders
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-purchaseorders-api-openapi.yml
+- aid: qubiqle:qubiqle-receipts-api
+  name: Qubiqle receipts API
+  description: The receipts API from Qubiqle — 3 operation(s) for receipts.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - receipts
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-receipts-api-openapi.yml
+- aid: qubiqle:qubiqle-vendors-api
+  name: Qubiqle vendors API
+  description: The vendors API from Qubiqle — 3 operation(s) for vendors.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - vendors
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-vendors-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +147,70 @@ maintainers:
 common:
 - type: Website
   url: https://ottimate.com
+- type: DeveloperPortal
+  url: https://docs.ottimate.com
+- type: Documentation
+  url: https://docs.ottimate.com/welcome
+- type: APIReference
+  url: https://docs.ottimate.com/api-reference
+- type: GettingStarted
+  url: https://docs.ottimate.com/integration-journey
+- type: Authentication
+  url: authentication/qubiqle-authentication.yml
+- type: OAuthScopes
+  url: scopes/qubiqle-scopes.yml
+- type: Sandbox
+  url: sandbox/qubiqle-sandbox.yml
+- type: RateLimits
+  url: rate-limits/qubiqle-rate-limits.yml
+- type: Idempotency
+  url: conventions/qubiqle-conventions.yml
+- type: Conventions
+  url: conventions/qubiqle-conventions.yml
+- type: ErrorCatalog
+  url: errors/qubiqle-problem-types.yml
+- type: DataModel
+  url: data-model/qubiqle-data-model.yml
+- type: Lifecycle
+  url: lifecycle/qubiqle-lifecycle.yml
+- type: StatusPage
+  url: https://status.ottimate.com
+- type: Deprecation
+  url: https://docs.ottimate.com/releases
+- type: ChangeLog
+  url: changelog/qubiqle-changelog.yml
+- type: Conformance
+  url: conformance/qubiqle-conformance.yml
+- type: MCPServer
+  url: mcp/qubiqle-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Sync ERP master data into Ottimate
+  url: arazzo/qubiqle-sync-erp-master-data.yml
+- type: Arazzo
+  name: Invoice capture to export
+  url: arazzo/qubiqle-invoice-capture-to-export.yml
+- type: AgenticAccess
+  url: agentic-access/qubiqle-agentic-access.yml
+- type: DomainSecurity
+  url: security/qubiqle-domain-security.yml
+- type: WellKnown
+  url: well-known/qubiqle-well-known.yml
+- type: Support
+  url: https://ottimate.com/support
+- type: Blog
+  url: https://ottimate.com/blog
+- type: GitHubOrganization
+  url: https://github.com/PlateIQ
+- type: SignUp
+  url: https://dashboard.ottimate.com
+- type: TermsOfService
+  url: https://ottimate.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://ottimate.com/privacy-policy
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1

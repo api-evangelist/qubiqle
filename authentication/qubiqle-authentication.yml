@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/qubiqle-openapi-original.json
+docs: https://docs.ottimate.com/auth
+summary:
+  types:
+  - oauth2
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows:
+  - clientCredentials
+  notes: >-
+    Every request requires BOTH an X-Api-Key header (partner-provisioned API key)
+    and an Authorization: Bearer access token obtained via the OAuth2
+    client_credentials grant. Client ID / Client Secret and API keys are
+    provisioned per client account by an Ottimate Partner Manager (no
+    self-service). Only the scope accounts.can_access_dashboard is currently
+    supported. Auth server URLs differ by environment.
+schemes:
+- name: OAuth2
+  type: http
+  scheme: bearer
+  description: >-
+    Bearer access token from the OAuth2 client_credentials grant. Obtained by
+    POSTing client_id + client_secret to the environment auth server
+    (sandbox-auth.ottimate.com / auth.ottimate.com). Tokens are cached until
+    expires_in elapses or a 401 is returned.
+  token_urls:
+    sandbox: https://sandbox-auth.ottimate.com/oauth/token
+    production: https://auth.ottimate.com/oauth/token
+  sources:
+  - openapi/qubiqle-openapi-original.json
+- name: X-Api-Key
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  description: >-
+    Partner-provisioned API key, required on every request in addition to the
+    bearer token. Rotating the key invalidates cached idempotency entries scoped
+    to it.
+  sources:
+  - openapi/qubiqle-openapi-original.json
+  - https://docs.ottimate.com/auth
