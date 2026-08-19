@@ -1,0 +1,969 @@
+{
+  "item": [
+    {
+      "id": "5b766a4e-644d-4d4e-9016-e6c4ab95618b",
+      "name": "vendors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2766b849-7893-4f33-b8ab-e719bae3d205",
+          "name": "Retrieve a paginated list of accounting vendors",
+          "request": {
+            "name": "Retrieve a paginated list of accounting vendors",
+            "description": {
+              "content": "Returns a paginated list of accounting vendors, filterable by company. The `detail=basic` query parameter returns a simplified response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ottimate_company_id",
+                  "value": "<integer>",
+                  "description": "Filter vendors by company ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "<string>",
+                  "description": "Specify the level of detail in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_modified_date_from",
+                  "value": "<string>",
+                  "description": "Filter vendors last modified on or after this date. Requires ottimate_company_id. Accepted formats: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS. All times are interpreted as UTC. A date-only value is treated as 00:00:00 UTC."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_modified_date_from_utc",
+                  "value": "<string>",
+                  "description": "UTC filter. Accepts ISO 8601 with optional Z/offset, or YYYY-MM-DD[ HH:MM:SS] (assumed UTC). Takes precedence over the non-_utc variant."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_modified_date_to",
+                  "value": "<string>",
+                  "description": "Filter vendors last modified on or before this date. Requires ottimate_company_id. Accepted formats: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS. All times are interpreted as UTC. A date-only value is treated as 00:00:00 UTC — to include the full day pass an explicit time (e.g. 2024-12-31 23:59:59)."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_modified_date_to_utc",
+                  "value": "<string>",
+                  "description": "UTC filter. Accepts ISO 8601 with optional Z/offset, or YYYY-MM-DD[ HH:MM:SS] (assumed UTC). Takes precedence over the non-_utc variant."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results per page (default 20)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fd1ae68-ff30-47dd-9b9d-0475089253c8",
+              "name": "Successful response with paginated vendor list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "last_modified_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_from_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"count\": 736,\n  \"page\": 3728,\n  \"limit\": 4847,\n  \"vendors\": [\n    {\n      \"id\": 1426,\n      \"erp_vendor_name\": \"string\",\n      \"ottimate_company_id\": 4694,\n      \"company_name\": \"string\",\n      \"erp_vendor_id\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"ach\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\",\n      \"last_modified_date\": \"1965-01-25T07:24:16.064Z\",\n      \"last_modified_date_utc\": \"1993-11-05T12:39:38.761Z\"\n    },\n    {\n      \"id\": 1778,\n      \"erp_vendor_name\": \"string\",\n      \"ottimate_company_id\": 452,\n      \"company_name\": \"string\",\n      \"erp_vendor_id\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"credit_card\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\",\n      \"last_modified_date\": \"1955-01-03T23:13:42.167Z\",\n      \"last_modified_date_utc\": \"2014-08-28T12:15:57.922Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f531875-153a-4c9a-9f9f-56368555691d",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "last_modified_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_from_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bee01d63-ae70-4f78-9b8e-66db17f3f558",
+              "name": "Unauthorized - Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "last_modified_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_from_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_modified_date_to_utc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a28dd56-2cbe-45f0-9c02-9fc652f33988",
+          "name": "Create a single new accounting vendor",
+          "request": {
+            "name": "Create a single new accounting vendor",
+            "description": {
+              "content": "Creates a new vendor with the provided details. The `erp_vendor_id` is required and will be mapped to both `accounting_id` and `dd_unique_key`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_vendor_name\": \"<string>\",\n  \"erp_vendor_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"net_terms\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0517e5ec-7051-475c-939f-8004701907a4",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_vendor_name\": \"<string>\",\n  \"erp_vendor_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"net_terms\": \"<string>\",\n  \"payment_method\": \"ach\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"vendor\": {\n    \"id\": 8605,\n    \"ottimate_company_id\": 7566,\n    \"erp_vendor_id\": \"string\",\n    \"erp_vendor_name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"net_terms\": \"string\",\n    \"payment_method\": \"credit_card\",\n    \"address_line_1\": \"string\",\n    \"address_line_2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45020e5e-b3c6-45d5-a4a8-f47940db5328",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_vendor_name\": \"<string>\",\n  \"erp_vendor_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"net_terms\": \"<string>\",\n  \"payment_method\": \"ach\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d83afd7-ba7d-4e15-88bf-fac5daa94878",
+          "name": "Retrieve a specific vendor by ID",
+          "request": {
+            "name": "Retrieve a specific vendor by ID",
+            "description": {
+              "content": "Returns detailed information for a single accounting vendor using its unique ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the vendor"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee8d57f7-c060-4f90-912f-bb7caa4674f1",
+              "name": "Successful response with vendor details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the vendor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"vendor\": {\n    \"id\": 7655,\n    \"ottimate_company_id\": 4057,\n    \"erp_vendor_id\": \"string\",\n    \"erp_vendor_name\": \"string\",\n    \"company_name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"net_terms\": \"string\",\n    \"payment_method\": \"unknown\",\n    \"address_line_1\": \"string\",\n    \"address_line_2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcc10da5-7d19-41d6-96ca-2dc47287302c",
+              "name": "Not found - Resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the vendor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c34dc95d-22c2-4469-85d8-2d8e2ac3420e",
+          "name": "Create or update multiple accounting vendors",
+          "request": {
+            "name": "Create or update multiple accounting vendors",
+            "description": {
+              "content": "Allows for the creation or updating of multiple vendors in a single request. Maximum 100 vendors per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendors",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"vendors\": [\n    {\n      \"erp_vendor_id\": \"<string>\",\n      \"erp_vendor_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"net_terms\": \"<string>\",\n      \"payment_method\": \"<string>\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipcode\": \"<string>\"\n    },\n    {\n      \"erp_vendor_id\": \"<string>\",\n      \"erp_vendor_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"net_terms\": \"<string>\",\n      \"payment_method\": \"<string>\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipcode\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a82a9394-17c5-4a2f-be03-f2acd5679289",
+              "name": "Successfully created or updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"vendors\": [\n    {\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    },\n    {\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"success_count\": 1402,\n  \"created_count\": 3619,\n  \"updated_count\": 7899,\n  \"error_count\": 8075,\n  \"created\": [\n    {\n      \"id\": 7414,\n      \"ottimate_company_id\": 6517,\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"ach\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    },\n    {\n      \"id\": 6645,\n      \"ottimate_company_id\": 4632,\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    }\n  ],\n  \"updated\": [\n    {\n      \"id\": 5266,\n      \"ottimate_company_id\": 2463,\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"wire_transfer\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    },\n    {\n      \"id\": 2925,\n      \"ottimate_company_id\": 581,\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"index\": 9453,\n      \"erp_vendor_id\": \"string\",\n      \"error\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"index\": 5035,\n      \"erp_vendor_id\": \"string\",\n      \"error\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85858137-0da3-49cd-99a7-76f93d3631fe",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"vendors\": [\n    {\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    },\n    {\n      \"erp_vendor_id\": \"string\",\n      \"erp_vendor_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"net_terms\": \"string\",\n      \"payment_method\": \"unknown\",\n      \"address_line_1\": \"string\",\n      \"address_line_2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipcode\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ottimate.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "17ab3546-f4f0-4ddb-add8-4f3ca8f17508",
+    "name": "API Reference accounts vendors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

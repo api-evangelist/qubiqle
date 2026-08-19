@@ -1,0 +1,915 @@
+{
+  "item": [
+    {
+      "id": "4107af8e-6c24-42ba-95df-6bdfc0c5b3b4",
+      "name": "dimensions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "100ba164-2362-4a95-835b-b964dce2838f",
+          "name": "Retrieve a paginated list of dimensions",
+          "request": {
+            "name": "Retrieve a paginated list of dimensions",
+            "description": {
+              "content": "Returns a paginated list of dimensions, filterable by company and type. The `detail=basic` query parameter returns a simplified response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ottimate_company_id",
+                  "value": "<integer>",
+                  "description": "Filter dimensions by company ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "erp_type",
+                  "value": "<string>",
+                  "description": "Filter dimensions by ERP type"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "<string>",
+                  "description": "Specify the level of detail in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results per page (default 20)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7939c58-d223-4880-9a38-18c78dadd59f",
+              "name": "Successful response with paginated dimension list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "erp_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"count\": 7589,\n  \"page\": 7726,\n  \"limit\": 7406,\n  \"dimensions\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"erp_type\": \"string\",\n      \"erp_dimension_id\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"ottimate_type\": \"customer\",\n      \"ottimate_company_id\": 7961\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"erp_type\": \"string\",\n      \"erp_dimension_id\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"ottimate_type\": \"company\",\n      \"ottimate_company_id\": 3513\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e74c0ed3-d66f-466e-96f3-502e1b7b4dab",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "erp_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd7e7778-30e5-4976-9173-032c16035aa7",
+              "name": "Unauthorized - Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ottimate_company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "erp_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "basic"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "185a8e5c-c4ce-4367-816a-74927290c59c",
+          "name": "Create a single new dimension",
+          "request": {
+            "name": "Create a single new dimension",
+            "description": {
+              "content": "Creates a new dimension with the provided details. The `reference_id` and `erp_dimension_id` are required for a successful creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_type\": \"<string>\",\n  \"ottimate_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"erp_dimension_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8545488-5b96-4383-a7e3-4824ac28d5a3",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_type\": \"<string>\",\n  \"ottimate_type\": \"account\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"erp_dimension_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"erp_type\": \"string\",\n  \"code\": \"string\",\n  \"reference_id\": \"string\",\n  \"ottimate_type\": \"employee\",\n  \"erp_dimension_id\": \"string\",\n  \"ottimate_company_id\": 6525\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f8c90dc-eafd-45d0-b2db-350b304e0e2f",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"erp_type\": \"<string>\",\n  \"ottimate_type\": \"account\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"erp_dimension_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67d8b9e8-7b7e-4582-8a49-3353f0b82753",
+          "name": "Retrieve a specific dimension by ID",
+          "request": {
+            "name": "Retrieve a specific dimension by ID",
+            "description": {
+              "content": "Returns detailed information for a single dimension using its unique ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the dimension"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dda31a70-dfd5-4d7c-843e-b5f73ef1dd3d",
+              "name": "Successful response with dimension details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the dimension"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"dimension\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"erp_type\": \"string\",\n    \"erp_dimension_id\": \"string\",\n    \"code\": \"string\",\n    \"reference_id\": \"string\",\n    \"ottimate_type\": \"project\",\n    \"ottimate_company_id\": 2459\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d31f9cd-696b-4d13-ae4f-036a8576af41",
+              "name": "Not found - Resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the dimension"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e3c9b62-2c10-489a-8286-80777cf918a8",
+          "name": "Create or update multiple dimensions",
+          "request": {
+            "name": "Create or update multiple dimensions",
+            "description": {
+              "content": "Allows for the creation or updating of multiple dimensions in a single request. The request body should contain a `ottimate_company_id` and an array of `dimensions`. Maximum 100 dimensions per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for authentication",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                "key": "X-API-Version",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"dimensions\": [\n    {\n      \"erp_type\": \"<string>\",\n      \"ottimate_type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"erp_dimension_id\": \"<string>\"\n    },\n    {\n      \"erp_type\": \"<string>\",\n      \"ottimate_type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"erp_dimension_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28436b7f-245c-4693-ba5c-8859a2afee5b",
+              "name": "Successfully created or updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"dimensions\": [\n    {\n      \"erp_type\": \"string\",\n      \"ottimate_type\": \"costtype\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"erp_dimension_id\": \"string\"\n    },\n    {\n      \"erp_type\": \"string\",\n      \"ottimate_type\": \"costtype\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"erp_dimension_id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"success_count\": 9363,\n  \"created_count\": 9622,\n  \"updated_count\": 7112,\n  \"error_count\": 6247,\n  \"created\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"updated\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d45782f-e6a3-4852-a490-892d980de427",
+              "name": "Bad request - Invalid parameters or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) OAuth2 authentication flows. Auth server URLs will vary by environment",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API key for authentication",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "API version to use (optional, defaults to latest). Supported values: 1.0.0, 1.1.0.",
+                    "key": "X-API-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Client-generated unique key (UUID/ULID recommended). JSON requests: the first 2xx response is cached for 24h and replayed on a same-key retry with a matching body; a different body returns 422. Non-JSON requests (e.g. file uploads): the key is single-use — any same-key retry returns 422 regardless of body. See [Idempotency](https://docs.ottimate.com/idempotency) for full details.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ottimate_company_id\": \"<integer>\",\n  \"dimensions\": [\n    {\n      \"erp_type\": \"string\",\n      \"ottimate_type\": \"costtype\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"erp_dimension_id\": \"string\"\n    },\n    {\n      \"erp_type\": \"string\",\n      \"ottimate_type\": \"costtype\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"reference_id\": \"string\",\n      \"erp_dimension_id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": {},\n  \"request_id\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ottimate.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "600910c1-8f0b-4737-ac92-7377c0e961e9",
+    "name": "API Reference accounts dimensions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
