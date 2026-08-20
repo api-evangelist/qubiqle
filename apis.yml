@@ -43,6 +43,17 @@ tags:
 - Invoicing
 - Payments
 - Accounting
+- Fintech
+- Automation
+- Artificial Intelligence
+- ERP Integration
+- Procurement
+tags_raw:
+- Company
+- Accounts Payable
+- Invoicing
+- Payments
+- Accounting
 - FinTech
 - Automation
 - Artificial Intelligence
@@ -55,6 +66,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -65,6 +78,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Batch
+  tags_raw:
   - batch
   properties:
   - type: OpenAPI
@@ -75,6 +90,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Catalog
+  tags_raw:
   - catalog
   properties:
   - type: OpenAPI
@@ -85,6 +102,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Dimensions
+  tags_raw:
   - dimensions
   properties:
   - type: OpenAPI
@@ -95,6 +114,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Invoices
+  tags_raw:
   - invoices
   properties:
   - type: OpenAPI
@@ -105,6 +126,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Authentication
+  tags_raw:
   - oauth
   properties:
   - type: OpenAPI
@@ -115,6 +138,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Purchase Orders
+  tags_raw:
   - purchaseOrders
   properties:
   - type: OpenAPI
@@ -125,6 +150,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Receipts
+  tags_raw:
   - receipts
   properties:
   - type: OpenAPI
@@ -135,6 +162,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Vendors
+  tags_raw:
   - vendors
   properties:
   - type: OpenAPI
