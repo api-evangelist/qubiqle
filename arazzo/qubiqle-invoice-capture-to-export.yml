@@ -4,8 +4,11 @@ info:
   version: 1.0.0
   summary: Upload an invoice document, retrieve the created invoice, code it, then mark it exported.
 sourceDescriptions:
-- name: ottimate
-  url: ../openapi/qubiqle-openapi-original.json
+- name: invoicesApi
+  url: ../openapi/qubiqle-invoices-api-openapi.yml
+  type: openapi
+- name: oauthApi
+  url: ../openapi/qubiqle-oauth-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: invoiceCaptureToExport
@@ -13,10 +16,10 @@ workflows:
   inputs:
     type: object
     properties:
-      apiKey: { type: string }
-      clientId: { type: string }
-      clientSecret: { type: string }
-      invoiceId: { type: string }
+      apiKey: {type: string}
+      clientId: {type: string}
+      clientSecret: {type: string}
+      invoiceId: {type: string}
   steps:
   - stepId: authenticate
     operationId: post-oauth-token

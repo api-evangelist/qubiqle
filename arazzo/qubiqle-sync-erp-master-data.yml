@@ -4,8 +4,14 @@ info:
   version: 1.0.0
   summary: Authenticate, then upsert accounting dimensions and vendors so invoices can be auto-coded and matched.
 sourceDescriptions:
-- name: ottimate
-  url: ../openapi/qubiqle-openapi-original.json
+- name: dimensionsApi
+  url: ../openapi/qubiqle-dimensions-api-openapi.yml
+  type: openapi
+- name: oauthApi
+  url: ../openapi/qubiqle-oauth-api-openapi.yml
+  type: openapi
+- name: vendorsApi
+  url: ../openapi/qubiqle-vendors-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: syncErpMasterData
@@ -13,11 +19,11 @@ workflows:
   inputs:
     type: object
     properties:
-      apiKey: { type: string }
-      clientId: { type: string }
-      clientSecret: { type: string }
-      dimensions: { type: array }
-      vendors: { type: array }
+      apiKey: {type: string}
+      clientId: {type: string}
+      clientSecret: {type: string}
+      dimensions: {type: array}
+      vendors: {type: array}
   steps:
   - stepId: authenticate
     operationId: post-oauth-token
