@@ -132,30 +132,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/qubiqle-invoices-api-openapi.yml
-- aid: qubiqle:qubiqle-oauth-api
-  name: Qubiqle oauth API
-  description: The oauth API from Qubiqle — 1 operation(s) for oauth.
-  humanURL: https://docs.ottimate.com
-  baseURL: https://api.ottimate.com/v1
-  tags:
-  - Authentication
-  tags_raw:
-  - oauth
-  properties:
-  - type: OpenAPI
-    url: openapi/qubiqle-oauth-api-openapi.yml
-- aid: qubiqle:qubiqle-purchaseorders-api
-  name: Qubiqle purchaseOrders API
-  description: The purchaseOrders API from Qubiqle — 3 operation(s) for purchaseorders.
-  humanURL: https://docs.ottimate.com
-  baseURL: https://api.ottimate.com/v1
-  tags:
-  - Purchase Orders
-  tags_raw:
-  - purchaseOrders
-  properties:
-  - type: OpenAPI
-    url: openapi/qubiqle-purchaseorders-api-openapi.yml
 - aid: qubiqle:qubiqle-receipts-api
   name: Qubiqle receipts API
   description: The receipts API from Qubiqle — 3 operation(s) for receipts.
@@ -180,6 +156,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/qubiqle-vendors-api-openapi.yml
+- aid: qubiqle:qubiqle-oauth-api
+  name: Qubiqle OAUTH API
+  description: The oauth API from Qubiqle — 1 operation(s) for oauth.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-oauth-api-openapi.yml
+- aid: qubiqle:qubiqle-purchase-orders-api
+  name: Qubiqle Purchase Orders API
+  description: The Purchase Orders API from Qubiqle — 3 operation(s) for purchase orders.
+  humanURL: https://docs.ottimate.com
+  baseURL: https://api.ottimate.com/v1
+  tags:
+  - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/qubiqle-purchase-orders-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
