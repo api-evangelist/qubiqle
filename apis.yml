@@ -162,6 +162,8 @@ apis:
   humanURL: https://docs.ottimate.com
   baseURL: https://api.ottimate.com/v1
   tags:
+  - Authentication
+  tags_raw:
   - oauth
   properties:
   - type: OpenAPI
