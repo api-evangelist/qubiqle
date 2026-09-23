@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference accounts batch API
+  title: Reference Batch API
   version: 1.0.0
 servers:
 - url: https://api.ottimate.com/v1
@@ -8,7 +8,7 @@ servers:
 - url: https://sandbox-api.ottimate.com/v1
   description: Sandbox
 tags:
-- name: batch
+- name: Batch
 paths:
   /batch/{id}/progress:
     get:
@@ -16,7 +16,7 @@ paths:
       summary: Poll batch progress
       description: Returns the current progress of a batch operation. Poll this endpoint until `status` is `completed`. When completed, a `results_url` is included. If all tasks failed, an `error` field is included with the failure reason.
       tags:
-      - batch
+      - Batch
       parameters:
       - name: id
         in: path
@@ -67,7 +67,7 @@ paths:
       summary: Retrieve batch results
       description: Returns the per-task results for a batch operation. Call this endpoint after polling `/progress` until `status` is `completed`. Each entry in `results` corresponds to one task, with the task outcome in `result` and any error message in `message`.
       tags:
-      - batch
+      - Batch
       parameters:
       - name: id
         in: path
@@ -118,7 +118,7 @@ paths:
       summary: List batches
       description: Returns a paginated list of batch jobs belonging to the authenticated user, sorted by last modified time descending. Use the `status` filter to narrow results to in-progress or completed batches. Use `date_from` / `date_to` to filter by last modified time range.
       tags:
-      - batch
+      - Batch
       parameters:
       - name: status
         in: query
@@ -219,44 +219,24 @@ components:
       required:
       - task
       title: BatchResultsResponseResultsItems
-    BatchProgressResponseStatus:
-      type: string
-      enum:
-      - processing
-      - completed
-      description: '`processing` while tasks are running; `completed` when all tasks have finished (regardless of individual success/failure)'
-      title: BatchProgressResponseStatus
-    BatchGetParametersStatus:
-      type: string
-      enum:
-      - processing
-      - completed
-      title: BatchGetParametersStatus
-    ErrorResponse:
+    BatchResultsResponse:
       type: object
       properties:
-        code:
+        version:
           type: string
-          description: Human-readable error message
-        request_id:
+        batch_id:
           type: string
-          description: Unique identifier for the request
-        message:
-          description: Additional error details, can be an object, a string, or null.
-        timestamp:
-          type: string
-          description: Timestamp when error occurred
+          description: The batch identifier
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchResultsResponseResultsItems'
+          description: One entry per task in the batch
       required:
-      - code
-      - message
-      title: ErrorResponse
-    BatchGetResponsesContentApplicationJsonSchemaResultsItemsStatus:
-      type: string
-      enum:
-      - processing
-      - completed
-      description: '`processing` while tasks are running; `completed` when all tasks have finished'
-      title: BatchGetResponsesContentApplicationJsonSchemaResultsItemsStatus
+      - version
+      - batch_id
+      - results
+      title: BatchResultsResponse
     BatchGetResponsesContentApplicationJsonSchemaResultsItems:
       type: object
       properties:
@@ -307,24 +287,6 @@ components:
           items:
             $ref: '#/components/schemas/BatchGetResponsesContentApplicationJsonSchemaResultsItems'
       title: Batch_get_batch_root_Response_200
-    BatchResultsResponse:
-      type: object
-      properties:
-        version:
-          type: string
-        batch_id:
-          type: string
-          description: The batch identifier
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchResultsResponseResultsItems'
-          description: One entry per task in the batch
-      required:
-      - version
-      - batch_id
-      - results
-      title: BatchResultsResponse
     BatchProgressResponse:
       type: object
       properties:
@@ -368,6 +330,44 @@ components:
       - tasks_failed
       - status
       title: BatchProgressResponse
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Human-readable error message
+        request_id:
+          type: string
+          description: Unique identifier for the request
+        message:
+          description: Additional error details, can be an object, a string, or null.
+        timestamp:
+          type: string
+          description: Timestamp when error occurred
+      required:
+      - code
+      - message
+      title: ErrorResponse
+    BatchProgressResponseStatus:
+      type: string
+      enum:
+      - processing
+      - completed
+      description: '`processing` while tasks are running; `completed` when all tasks have finished (regardless of individual success/failure)'
+      title: BatchProgressResponseStatus
+    BatchGetParametersStatus:
+      type: string
+      enum:
+      - processing
+      - completed
+      title: BatchGetParametersStatus
+    BatchGetResponsesContentApplicationJsonSchemaResultsItemsStatus:
+      type: string
+      enum:
+      - processing
+      - completed
+      description: '`processing` while tasks are running; `completed` when all tasks have finished'
+      title: BatchGetResponsesContentApplicationJsonSchemaResultsItemsStatus
   securitySchemes:
     OAuth2:
       type: http

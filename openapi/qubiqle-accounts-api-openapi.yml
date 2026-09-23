@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference accounts API
+  title: Reference Accounts API
   version: 1.0.0
 servers:
 - url: https://api.ottimate.com/v1
@@ -8,7 +8,7 @@ servers:
 - url: https://sandbox-api.ottimate.com/v1
   description: Sandbox
 tags:
-- name: accounts
+- name: Accounts
 paths:
   /accounts/{id}/companies:
     get:
@@ -16,7 +16,7 @@ paths:
       summary: Retrieve companies for an account
       description: Returns a paginated list of companies associated with the specified account.
       tags:
-      - accounts
+      - Accounts
       parameters:
       - name: id
         in: path
@@ -73,7 +73,7 @@ paths:
       summary: Retrieve locations for an account
       description: Returns a paginated list of locations associated with the specified account.
       tags:
-      - accounts
+      - Accounts
       parameters:
       - name: id
         in: path
@@ -130,7 +130,7 @@ paths:
       summary: Retrieve accounts for the authenticated user
       description: Returns a paginated list of Ottimate accounts that the authenticated user has access to, based on partner associations linked to the OAuth client credentials.
       tags:
-      - accounts
+      - Accounts
       parameters:
       - name: search
         in: query
@@ -196,6 +196,35 @@ components:
       - id
       - name
       title: LocationObject
+    CompanyObject:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        location_count:
+          type: integer
+        plan:
+          type: string
+      required:
+      - id
+      - name
+      title: CompanyObject
+    Accounts_get_accounts_id_companies_Response_200:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyObject'
+      title: Accounts_get_accounts_id_companies_Response_200
     Accounts_get_accounts_root_Response_200:
       type: object
       properties:
@@ -224,21 +253,6 @@ components:
           items:
             $ref: '#/components/schemas/LocationObject'
       title: Accounts_get_accounts_id_locations_Response_200
-    CompanyObject:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        location_count:
-          type: integer
-        plan:
-          type: string
-      required:
-      - id
-      - name
-      title: CompanyObject
     AccountObject:
       type: object
       properties:
@@ -267,20 +281,6 @@ components:
       - id
       - name
       title: AccountObject
-    Accounts_get_accounts_id_companies_Response_200:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyObject'
-      title: Accounts_get_accounts_id_companies_Response_200
   securitySchemes:
     OAuth2:
       type: http

@@ -1,15 +1,7 @@
 {
   "provider": "qubiqle",
   "sources": [
-    "qubiqle-accounts-api-openapi.yml",
-    "qubiqle-batch-api-openapi.yml",
-    "qubiqle-catalog-api-openapi.yml",
-    "qubiqle-dimensions-api-openapi.yml",
-    "qubiqle-invoices-api-openapi.yml",
-    "qubiqle-oauth-api-openapi.yml",
-    "qubiqle-purchaseorders-api-openapi.yml",
-    "qubiqle-receipts-api-openapi.yml",
-    "qubiqle-vendors-api-openapi.yml"
+    "_original/qubiqle-openapi-original.json"
   ],
   "outputs": [
     "qubiqle-accounts-api-openapi.yml",
@@ -22,9 +14,35 @@
     "qubiqle-receipts-api-openapi.yml",
     "qubiqle-vendors-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "qubiqle-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "qubiqle-openapi-original.json: declared missing tag: accounts",
+    "qubiqle-openapi-original.json: declared missing tag: batch",
+    "qubiqle-openapi-original.json: declared missing tag: catalog",
+    "qubiqle-openapi-original.json: declared missing tag: dimensions",
+    "qubiqle-openapi-original.json: declared missing tag: invoices",
+    "qubiqle-openapi-original.json: declared missing tag: oauth",
+    "qubiqle-openapi-original.json: declared missing tag: purchaseOrders",
+    "qubiqle-openapi-original.json: declared missing tag: receipts",
+    "qubiqle-openapi-original.json: declared missing tag: vendors",
+    "superseded outputs removed: qubiqle-o-auth-api-openapi.yml, qubiqle-purchase-orders-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 9 total)"
+  ],
+  "skipped": [
+    "qubiqle-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-batch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-dimensions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-purchase-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-receipts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qubiqle-vendors-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference accounts receipts API
+  title: Reference Receipts API
   version: 1.0.0
 servers:
 - url: https://api.ottimate.com/v1
@@ -8,7 +8,7 @@ servers:
 - url: https://sandbox-api.ottimate.com/v1
   description: Sandbox
 tags:
-- name: receipts
+- name: Receipts
 paths:
   /receipts:
     get:
@@ -16,7 +16,7 @@ paths:
       summary: Retrieve a paginated list of receipts
       description: Returns a paginated list of receipts, filterable by company, location, purchase order, status, and date range.
       tags:
-      - receipts
+      - Receipts
       parameters:
       - name: ottimate_company_id
         in: query
@@ -122,7 +122,7 @@ paths:
       summary: Create a single receipt
       description: Creates a new receipt linked to an existing purchase order. The `receipt_number` field is required and must be provided by the client
       tags:
-      - receipts
+      - Receipts
       parameters:
       - name: Authorization
         in: header
@@ -173,7 +173,7 @@ paths:
       summary: Retrieve a specific receipt by ID
       description: Returns detailed information for a single receipt including all line items.
       tags:
-      - receipts
+      - Receipts
       parameters:
       - name: id
         in: path
@@ -217,7 +217,7 @@ paths:
       summary: Update an existing receipt
       description: 'Updates a receipt. Note: `status`, `receipt_number`, `external_id`, and `ottimate_po_id` cannot be changed.'
       tags:
-      - receipts
+      - Receipts
       parameters:
       - name: id
         in: path
@@ -292,7 +292,7 @@ paths:
       summary: Bulk create or update receipts
       description: Creates or updates multiple receipts in a single request. Maximum 100 receipts and 1000 total line items per request. Processing is always asynchronous via Celery and returns a batch tracking ID for polling progress.
       tags:
-      - receipts
+      - Receipts
       parameters:
       - name: Authorization
         in: header
@@ -339,6 +339,265 @@ paths:
               $ref: '#/components/schemas/ReceiptBulkUpsertRequest'
 components:
   schemas:
+    ReceiptDetail:
+      type: object
+      properties:
+        version:
+          type: string
+        receipt:
+          $ref: '#/components/schemas/ReceiptDetailReceipt'
+      required:
+      - receipt
+      title: ReceiptDetail
+    Receipts_get_receipts_root_Response_200:
+      type: object
+      properties:
+        version:
+          type: string
+        count:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        receipts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptSummary'
+      title: Receipts_get_receipts_root_Response_200
+    ReceiptBulkUpsertRequestReceiptsItems:
+      type: object
+      properties:
+        ottimate_po_id:
+          type: string
+          description: Ottimate-assigned PO ID. Required unless using PO lookup fields.
+        ottimate_location_id:
+          type: integer
+          description: Location (restaurant) ID for PO lookup. Required when using lookup fields instead of ottimate_po_id.
+        erp_vendor_id:
+          type: string
+          description: ERP vendor ID for PO lookup.
+        po_number:
+          type: string
+          description: PO number for lookup.
+        po_external_id:
+          type: string
+          description: External ID (dd_unique_key) of the PO for lookup. Alternative to po_number.
+        external_id:
+          type: string
+        receipt_number:
+          type: string
+        date:
+          type: string
+          format: date
+        total_amount:
+          type: number
+          format: double
+        invoice_number_ref:
+          type: string
+          description: Invoice reference number
+        note:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptBulkUpsertRequestReceiptsItemsItemsItems'
+      required:
+      - receipt_number
+      - date
+      - total_amount
+      - items
+      description: To identify the PO, provide either ottimate_po_id OR erp_vendor_id + ottimate_location_id + (po_number OR po_external_id).
+      title: ReceiptBulkUpsertRequestReceiptsItems
+    ReceiptUpdateResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        id:
+          type: string
+        external_id:
+          type: string
+        receipt_number:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReceiptUpdateResponseStatus'
+        ottimate_po_id:
+          type: string
+        date:
+          type: string
+          format: date
+        total_amount:
+          type: number
+          format: double
+        items_count:
+          type: integer
+        last_modified_date:
+          type: string
+          format: date-time
+          description: Last modification timestamp. UTC ISO 8601, e.g. "2024-01-16T14:30:00Z".
+      required:
+      - id
+      - status
+      title: ReceiptUpdateResponse
+    ReceiptDetailReceiptStatus:
+      type: string
+      enum:
+      - open
+      - pending
+      - flagged
+      - closed
+      - archived
+      - deleted
+      title: ReceiptDetailReceiptStatus
+    ReceiptSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        receipt_number:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReceiptSummaryStatus'
+        ottimate_po_id:
+          type: string
+        date:
+          type: string
+          format: date
+        total_amount:
+          type: number
+          format: double
+        created_date:
+          type: string
+          format: date-time
+        created_date_utc:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: UTC equivalent of created_date. ISO 8601 with Z suffix, e.g. "2025-05-20T15:17:35.652584Z".
+      required:
+      - id
+      - status
+      title: ReceiptSummary
+    ReceiptCreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        receipt_number:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReceiptCreateResponseStatus'
+        ottimate_po_id:
+          type: string
+        date:
+          type: string
+          format: date
+        total_amount:
+          type: number
+          format: double
+        items_count:
+          type: integer
+        created_date:
+          type: string
+          format: date-time
+          description: Creation timestamp. UTC ISO 8601, e.g. "2024-01-16T14:30:00Z".
+      required:
+      - id
+      - status
+      title: ReceiptCreateResponse
+    ReceiptBulkUpsertRequestReceiptsItemsItemsItems:
+      type: object
+      properties:
+        external_id:
+          type: string
+        ottimate_po_item_id:
+          type: string
+          description: Ottimate-assigned PO item ID. Required unless po_external_item_id or sku is provided.
+        po_external_item_id:
+          type: string
+          description: External ID (dd_unique_key) of the PO item — used for lookup when ottimate_po_item_id is not provided.
+        sku:
+          type: string
+          description: SKU of the PO item — used for lookup when ottimate_po_item_id and po_external_item_id are not provided. Must match exactly one item on the PO.
+        quantity:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        uom:
+          type: string
+      required:
+      - quantity
+      description: 'Each item requires quantity and one of: ottimate_po_item_id, po_external_item_id, or sku.'
+      title: ReceiptBulkUpsertRequestReceiptsItemsItemsItems
+    ReceiptBulkUpsertAsyncResponseSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        total_items:
+          type: integer
+      title: ReceiptBulkUpsertAsyncResponseSummary
+    ReceiptCreateResponseStatus:
+      type: string
+      enum:
+      - open
+      - pending
+      - flagged
+      - closed
+      - archived
+      - deleted
+      title: ReceiptCreateResponseStatus
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Human-readable error message
+        request_id:
+          type: string
+          description: Unique identifier for the request
+        message:
+          description: Additional error details, can be an object, a string, or null.
+        timestamp:
+          type: string
+          description: Timestamp when error occurred
+      required:
+      - code
+      - message
+      title: ErrorResponse
+    ReceiptUpdateResponseStatus:
+      type: string
+      enum:
+      - open
+      - pending
+      - flagged
+      - closed
+      - archived
+      - deleted
+      title: ReceiptUpdateResponseStatus
+    ReceiptSummaryStatus:
+      type: string
+      enum:
+      - open
+      - pending
+      - flagged
+      - closed
+      - archived
+      - deleted
+      title: ReceiptSummaryStatus
+    ReceiptBulkUpsertAsyncResponseStatus:
+      type: string
+      enum:
+      - processing
+      title: ReceiptBulkUpsertAsyncResponseStatus
     ReceiptDetailReceipt:
       type: object
       properties:
@@ -388,95 +647,12 @@ components:
       - id
       - status
       title: ReceiptDetailReceipt
-    ReceiptsIdPatchRequestBodyContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Existing receipt item ID. If provided, updates that item; if omitted, creates a new item.
-        external_id:
-          type: string
-        ottimate_po_item_id:
-          type: string
-          description: Ottimate-assigned PO item ID. Required when creating a new item (no id), unless po_external_item_id or sku is provided.
-        po_external_item_id:
-          type: string
-          description: External ID (dd_unique_key) of the PO item — used for lookup when ottimate_po_item_id is not provided.
-        sku:
-          type: string
-          description: SKU of the PO item — used for lookup when ottimate_po_item_id and po_external_item_id are not provided. Must match exactly one item on the PO.
-        quantity:
-          type: number
-          format: double
-          description: Required when creating a new item (no id).
-        price:
-          type: number
-          format: double
-        uom:
-          type: string
-      title: ReceiptsIdPatchRequestBodyContentApplicationJsonSchemaItemsItems
-    Receipts_get_receipts_root_Response_200:
-      type: object
-      properties:
-        version:
-          type: string
-        count:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-        receipts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiptSummary'
-      title: Receipts_get_receipts_root_Response_200
-    ReceiptUpdateResponse:
-      type: object
-      properties:
-        version:
-          type: string
-        id:
-          type: string
-        external_id:
-          type: string
-        receipt_number:
-          type: string
-        status:
-          $ref: '#/components/schemas/ReceiptUpdateResponseStatus'
-        ottimate_po_id:
-          type: string
-        date:
-          type: string
-          format: date
-        total_amount:
-          type: number
-          format: double
-        items_count:
-          type: integer
-        last_modified_date:
-          type: string
-          format: date-time
-          description: Last modification timestamp. UTC ISO 8601, e.g. "2024-01-16T14:30:00Z".
-      required:
-      - id
-      - status
-      title: ReceiptUpdateResponse
-    ReceiptCreateResponseStatus:
-      type: string
-      enum:
-      - open
-      - pending
-      - flagged
-      - closed
-      - archived
-      - deleted
-      title: ReceiptCreateResponseStatus
-    ReceiptBulkUpsertRequestReceiptsItemsItemsItems:
+    ReceiptCreateRequestItemsItems:
       type: object
       properties:
         external_id:
           type: string
+          description: External unique identifier for this receipt item.
         ottimate_po_item_id:
           type: string
           description: Ottimate-assigned PO item ID. Required unless po_external_item_id or sku is provided.
@@ -497,25 +673,26 @@ components:
       required:
       - quantity
       description: 'Each item requires quantity and one of: ottimate_po_item_id, po_external_item_id, or sku.'
-      title: ReceiptBulkUpsertRequestReceiptsItemsItemsItems
-    ReceiptBulkUpsertAsyncResponseSummary:
+      title: ReceiptCreateRequestItemsItems
+    ReceiptBulkUpsertAsyncResponse:
       type: object
       properties:
-        count:
-          type: integer
-        total_items:
-          type: integer
-      title: ReceiptBulkUpsertAsyncResponseSummary
-    ReceiptSummaryStatus:
-      type: string
-      enum:
-      - open
-      - pending
-      - flagged
-      - closed
-      - archived
-      - deleted
-      title: ReceiptSummaryStatus
+        version:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReceiptBulkUpsertAsyncResponseStatus'
+        batch_id:
+          type: string
+        batch_url:
+          type: string
+        results_url:
+          type: string
+        summary:
+          $ref: '#/components/schemas/ReceiptBulkUpsertAsyncResponseSummary'
+      required:
+      - status
+      - batch_id
+      title: ReceiptBulkUpsertAsyncResponse
     ReceiptCreateRequest:
       type: object
       properties:
@@ -561,104 +738,33 @@ components:
       - items
       description: 'To identify the PO, provide either ottimate_po_id OR the lookup combination: erp_vendor_id + ottimate_location_id + (po_number OR po_external_id).'
       title: ReceiptCreateRequest
-    ReceiptDetail:
-      type: object
-      properties:
-        version:
-          type: string
-        receipt:
-          $ref: '#/components/schemas/ReceiptDetailReceipt'
-      required:
-      - receipt
-      title: ReceiptDetail
-    ReceiptDetailReceiptStatus:
-      type: string
-      enum:
-      - open
-      - pending
-      - flagged
-      - closed
-      - archived
-      - deleted
-      title: ReceiptDetailReceiptStatus
-    ReceiptBulkUpsertRequestReceiptsItems:
-      type: object
-      properties:
-        ottimate_po_id:
-          type: string
-          description: Ottimate-assigned PO ID. Required unless using PO lookup fields.
-        ottimate_location_id:
-          type: integer
-          description: Location (restaurant) ID for PO lookup. Required when using lookup fields instead of ottimate_po_id.
-        erp_vendor_id:
-          type: string
-          description: ERP vendor ID for PO lookup.
-        po_number:
-          type: string
-          description: PO number for lookup.
-        po_external_id:
-          type: string
-          description: External ID (dd_unique_key) of the PO for lookup. Alternative to po_number.
-        external_id:
-          type: string
-        receipt_number:
-          type: string
-        date:
-          type: string
-          format: date
-        total_amount:
-          type: number
-          format: double
-        invoice_number_ref:
-          type: string
-          description: Invoice reference number
-        note:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiptBulkUpsertRequestReceiptsItemsItemsItems'
-      required:
-      - receipt_number
-      - date
-      - total_amount
-      - items
-      description: To identify the PO, provide either ottimate_po_id OR erp_vendor_id + ottimate_location_id + (po_number OR po_external_id).
-      title: ReceiptBulkUpsertRequestReceiptsItems
-    ReceiptCreateResponse:
+    ReceiptsIdPatchRequestBodyContentApplicationJsonSchemaItemsItems:
       type: object
       properties:
         id:
           type: string
+          description: Existing receipt item ID. If provided, updates that item; if omitted, creates a new item.
         external_id:
           type: string
-        receipt_number:
+        ottimate_po_item_id:
           type: string
-        status:
-          $ref: '#/components/schemas/ReceiptCreateResponseStatus'
-        ottimate_po_id:
+          description: Ottimate-assigned PO item ID. Required when creating a new item (no id), unless po_external_item_id or sku is provided.
+        po_external_item_id:
           type: string
-        date:
+          description: External ID (dd_unique_key) of the PO item — used for lookup when ottimate_po_item_id is not provided.
+        sku:
           type: string
-          format: date
-        total_amount:
+          description: SKU of the PO item — used for lookup when ottimate_po_item_id and po_external_item_id are not provided. Must match exactly one item on the PO.
+        quantity:
           type: number
           format: double
-        items_count:
-          type: integer
-        created_date:
+          description: Required when creating a new item (no id).
+        price:
+          type: number
+          format: double
+        uom:
           type: string
-          format: date-time
-          description: Creation timestamp. UTC ISO 8601, e.g. "2024-01-16T14:30:00Z".
-      required:
-      - id
-      - status
-      title: ReceiptCreateResponse
-    ReceiptBulkUpsertAsyncResponseStatus:
-      type: string
-      enum:
-      - processing
-      title: ReceiptBulkUpsertAsyncResponseStatus
+      title: ReceiptsIdPatchRequestBodyContentApplicationJsonSchemaItemsItems
     ReceiptDetailReceiptItemsItems:
       type: object
       properties:
@@ -714,112 +820,6 @@ components:
       - ottimate_company_id
       - receipts
       title: ReceiptBulkUpsertRequest
-    ReceiptUpdateResponseStatus:
-      type: string
-      enum:
-      - open
-      - pending
-      - flagged
-      - closed
-      - archived
-      - deleted
-      title: ReceiptUpdateResponseStatus
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Human-readable error message
-        request_id:
-          type: string
-          description: Unique identifier for the request
-        message:
-          description: Additional error details, can be an object, a string, or null.
-        timestamp:
-          type: string
-          description: Timestamp when error occurred
-      required:
-      - code
-      - message
-      title: ErrorResponse
-    ReceiptBulkUpsertAsyncResponse:
-      type: object
-      properties:
-        version:
-          type: string
-        status:
-          $ref: '#/components/schemas/ReceiptBulkUpsertAsyncResponseStatus'
-        batch_id:
-          type: string
-        batch_url:
-          type: string
-        results_url:
-          type: string
-        summary:
-          $ref: '#/components/schemas/ReceiptBulkUpsertAsyncResponseSummary'
-      required:
-      - status
-      - batch_id
-      title: ReceiptBulkUpsertAsyncResponse
-    ReceiptSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        external_id:
-          type: string
-        receipt_number:
-          type: string
-        status:
-          $ref: '#/components/schemas/ReceiptSummaryStatus'
-        ottimate_po_id:
-          type: string
-        date:
-          type: string
-          format: date
-        total_amount:
-          type: number
-          format: double
-        created_date:
-          type: string
-          format: date-time
-        created_date_utc:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: UTC equivalent of created_date. ISO 8601 with Z suffix, e.g. "2025-05-20T15:17:35.652584Z".
-      required:
-      - id
-      - status
-      title: ReceiptSummary
-    ReceiptCreateRequestItemsItems:
-      type: object
-      properties:
-        external_id:
-          type: string
-          description: External unique identifier for this receipt item.
-        ottimate_po_item_id:
-          type: string
-          description: Ottimate-assigned PO item ID. Required unless po_external_item_id or sku is provided.
-        po_external_item_id:
-          type: string
-          description: External ID (dd_unique_key) of the PO item — used for lookup when ottimate_po_item_id is not provided.
-        sku:
-          type: string
-          description: SKU of the PO item — used for lookup when ottimate_po_item_id and po_external_item_id are not provided. Must match exactly one item on the PO.
-        quantity:
-          type: number
-          format: double
-        price:
-          type: number
-          format: double
-        uom:
-          type: string
-      required:
-      - quantity
-      description: 'Each item requires quantity and one of: ottimate_po_item_id, po_external_item_id, or sku.'
-      title: ReceiptCreateRequestItemsItems
   securitySchemes:
     OAuth2:
       type: http
